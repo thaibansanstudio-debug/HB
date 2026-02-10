@@ -1,0 +1,73 @@
+-- 🔥 CHAIN HUB SIMPLE KEY (NO SERVER)
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- KEY ที่ใช้ได้ (เพิ่มได้เรื่อยๆ)
+local VALID_KEYS = {
+    "CHAIN-1111",
+    "CHAIN-2222",
+    "CHAIN-3333",
+    "CHAIN-HUB",
+    "CHAIN-FREE"
+}
+
+------------------------------------------------
+-- UI แดงนีออน
+
+local gui = Instance.new("ScreenGui", player.PlayerGui)
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.fromScale(0.35,0.25)
+frame.Position = UDim2.fromScale(0.33,0.35)
+frame.BackgroundColor3 = Color3.fromRGB(12,12,12)
+frame.BorderColor3 = Color3.fromRGB(255,0,0)
+frame.BorderSizePixel = 3
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1,0,0.3,0)
+title.Text = "🔥 CHAIN HUB 🔥"
+title.BackgroundTransparency = 1
+title.TextScaled = true
+title.TextColor3 = Color3.fromRGB(255,60,60)
+
+local box = Instance.new("TextBox", frame)
+box.Size = UDim2.fromScale(0.8,0.25)
+box.Position = UDim2.fromScale(0.1,0.4)
+box.PlaceholderText = "ใส่ KEY"
+box.TextScaled = true
+box.BackgroundColor3 = Color3.fromRGB(30,30,30)
+box.TextColor3 = Color3.new(1,1,1)
+
+local btn = Instance.new("TextButton", frame)
+btn.Size = UDim2.fromScale(0.6,0.2)
+btn.Position = UDim2.fromScale(0.2,0.7)
+btn.Text = "UNLOCK HUB"
+btn.TextScaled = true
+btn.BackgroundColor3 = Color3.fromRGB(255,0,0)
+btn.TextColor3 = Color3.new(1,1,1)
+
+------------------------------------------------
+-- CHECK KEY (LOCAL)
+
+local function isValid(key)
+    for _,v in ipairs(VALID_KEYS) do
+        if key == v then
+            return true
+        end
+    end
+    return false
+end
+
+btn.MouseButton1Click:Connect(function()
+    if isValid(box.Text) then
+        frame:Destroy()
+
+        -- โหลด HUB จริง
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ChainHub/main.lua"))()
+    else
+        btn.Text = "KEY ผิด ❌"
+        task.wait(1.5)
+        btn.Text = "UNLOCK HUB"
+    end
+end)

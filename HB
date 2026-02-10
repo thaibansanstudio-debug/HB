@@ -64,7 +64,7 @@ btn.MouseButton1Click:Connect(function()
         frame:Destroy()
 
         -- โหลด HUB จริง
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ChainHub/main.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thaibansanstudio-debug/ChainHubLoader/refs/heads/main/main.lua"))()
     else
         btn.Text = "KEY ผิด ❌"
         task.wait(1.5)
